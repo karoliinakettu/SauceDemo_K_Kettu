@@ -5,10 +5,13 @@ Library    Browser
 
 *** Keywords ***
 Sauce Setup
-    [Arguments]     ${username}=${USERNAME}
-    Open Browser    https://www.saucedemo.com
+    [Arguments]    ${username}=${USERNAME}    ${password}=${SWAG_PASSWORD}    ${headless}=False
+    New Browser    chromium    headless=${headless}
+    New Context    viewport={'width': 1280, 'height': 720}
+    New Page
+    Go To    https://www.saucedemo.com/
     Fill Text       //input[@id="user-name"]      ${username}
-    Fill Text       //input[@id="password"]      ${SWAG_PASSWORD}
+    Fill Text       //input[@id="password"]      ${password}
     Click           //input[@id="login-button"]
 
 Sauce Teardown
@@ -49,7 +52,6 @@ Choose Random Item And Add It
     ${item}=    Get From List    ${items}    ${index}
     ${price}=    Get From List    ${prices}    ${index}
     Choose And Add Item    ${item}    ${price}
-
 
 Go Back To Products
     Click   //button[@id="back-to-products"]
@@ -104,8 +106,16 @@ Remove All Items From Main Page
         Toggle Item In Main Page    ${item}
     END
 
-Remove Item From The Cart
-
-Remove Item From The Cart On Item Page
-
-Remove Item From The Cart On Main Page
+Add Customer Details After Forgetting them
+    Go To Your Cart
+    Initiate Checkout
+    Click   //input[@id="continue"]
+    Browser.Wait For Elements State     xpath=//*[contains(text(), "Error: First Name is required")]    visible
+    Fill Text    id=first-name    Felicia
+    Click   //input[@id="continue"]
+    Browser.Wait For Elements State     xpath=//*[contains(text(), "Error: Last Name is required")]    visible
+    Fill Text    id=last-name     Landon
+    Click   //input[@id="continue"]
+    Browser.Wait For Elements State     xpath=//*[contains(text(), "Error: Postal Code is required")]    visible
+    Add Personal Info
+    Finish Checkout

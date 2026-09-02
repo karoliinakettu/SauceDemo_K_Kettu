@@ -4,33 +4,61 @@ A Robot Framework test automation project for the [SauceDemo](https://www.sauced
 
 ## Project overview
 
-This project contains a basic end-to-end test using Robot Framework with the Browser library. The current test logs in to SauceDemo, opens a product, verifies the product details, and confirms the item can be added to the cart.
+This project contains a Robot Framework suite that exercises common SauceDemo flows such as login, product selection, cart updates, checkout, and error handling. The tests use the Browser library and share reusable keywords and variables from the `resources/` folder.
 
 ## Project structure
 
 - `tests/` - Robot test files
-  - `saucedemo_tests.robot` - main end-to-end test suite
+  - `saucedemo_tests.robot` - main test suite
 - `resources/` - shared keywords and variables
   - `saucedemo_resoures.robot` - reusable Browser keywords
-  - `saucedemo_variables.robot` - product names, prices, and credentials
+  - `saucedemo_variables.robot` - products, prices, and usernames
 - `README.md` - project documentation
-- `test_design.md` - test design notes
-- `ai_usage.md` - notes about AI-assisted workflow
+- `test_design.md` - design notes for the test suite
+- `ai_usage.md` - notes about AI-assisted development
 
-## Current test coverage
+## Test coverage
 
-- Login to SauceDemo
-- Open a product from the inventory page
-- Validate product name and price on the item page
-- Add the item to the cart
-- Return to products
+The current suite includes checks for:
+
+- adding multiple products to the cart
+- verifying cart contents and prices
+- buying a product with checkout
+- adding and removing items from the main product page
+- locked-out user login error
+- customer details not added errors
+- invalid password login error
 
 ## Setup
 
-Install the required dependencies:
+1. Open a terminal in the project folder.
+2. Create a virtual environment.
+
+Mac/Linux:
+```bash
+cd /Users/karoliinakettu/SauceDemo
+python3 -m venv .venv
+source .venv/bin/activate
+```
+
+Windows (PowerShell):
+cd C:\path\to\SauceDemo
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+Windows (Command Prompt):
+cd C:\path\to\SauceDemo
+python -m venv .venv
+.venv\Scripts\activate.bat
+
+pip install robotframework robotframework-browser
+rfbrowser init
+
+Install the required packages:
 
 ```bash
 pip install robotframework robotframework-browser
+rfbrowser init
 ```
 
 ## Run the test
@@ -38,7 +66,7 @@ pip install robotframework robotframework-browser
 From the project root:
 
 ```bash
-cd /Users/karoliinakettu/SauceDemo
+cd /Users/***/SauceDemo
 robot tests/saucedemo_tests.robot
 ```
 
