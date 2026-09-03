@@ -36,7 +36,6 @@ The current suite includes checks for:
 
 Mac/Linux:
 ```bash
-cd /Users/karoliinakettu/SauceDemo
 python3 -m venv .venv
 source .venv/bin/activate
 ```
@@ -54,7 +53,6 @@ python -m venv .venv
 pip install robotframework robotframework-browser
 rfbrowser init
 
-Install the required packages:
 
 ```bash
 pip install robotframework robotframework-browser
@@ -66,7 +64,6 @@ rfbrowser init
 From the project root:
 
 ```bash
-cd /Users/***/SauceDemo
 robot tests/saucedemo_tests.robot
 ```
 
