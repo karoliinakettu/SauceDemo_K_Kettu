@@ -36,5 +36,15 @@ Postal code validation:
 - This should not be allowed, but it was left out because the expected behavior and error message were not clearly defined
 - It would be a useful edge case to test once the product requirements are clarified
 
+Locators as variables:
+- Locators were kept inline because this is a small project and they were rarely
+  used more than once
+- In a larger project, saving locators as variables would make them easier to
+  update and reuse
+
+Hiding passwords and usernames from GitHub:
+- This was considered, but SauceDemo publicly documents the password and possible
+  usernames, so hiding them was not considered necessary in this case
+
 This design keeps the suite focused on core functionality, flow reliability, and access-control behavior while leaving subjective and ambiguous UI/performance checks for manual review.
 
